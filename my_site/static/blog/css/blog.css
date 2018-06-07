@@ -106,3 +106,26 @@ input[type=submit] {
     border: solid 2px #777777;
     border-radius: 4px;
 }
+
+.alert {
+    padding: 10px;
+    background-color: #58d68d;
+}
+
+.closebtn {
+    margin-left: 15px;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    font-size: 24px;
+}
+
+.tags {
+    font-size: 16px;
+}
