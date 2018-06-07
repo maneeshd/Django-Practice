@@ -125,3 +125,7 @@ input[type=submit] {
 .closebtn:hover {
     font-size: 24px;
 }
+
+.tags {
+    font-size: 16px;
+}
