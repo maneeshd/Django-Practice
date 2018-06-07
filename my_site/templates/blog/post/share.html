@@ -3,17 +3,11 @@
 {% block title %}Share a post{% endblock %}
 
 {% block content %}
-    {% if sent %}
-        <h1>E-mail successfully sent</h1>
-        <p>
-            "{{ post.title }}" was successfully sent to {{ recipient }}.
-        </p>
-    {% else %}
-        <h1>Share "{{ post.title }}" by e-mail</h1>
-        <form action="{% url 'blog:share_post' post.id %}" method="post">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <input type="submit" value="Send e-mail">
-        </form>
-    {% endif %}
+    <h1>Share "{{ post.title }}" by e-mail</h1>
+    <form action="{% url 'blog:share_post' post.id %}" method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+        <input type="submit" value="Send e-mail">
+    </form>
 {% endblock %}

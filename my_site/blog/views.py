@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
 from .models import Post, Comment
 from django.views.generic import ListView
 from .forms import EmailPostForm, CommentForm
@@ -37,16 +37,24 @@ def post_detail(request, year, month, day, slug):
             return HttpResponseRedirect(to_next)
     else:
         comment_form = CommentForm()
+    sent = request.session.get("sent", False)
+    recipient = request.session.get("recipient", None)
+    if sent:
+        request.session["sent"] = False
+        request.session["sent"] = None
+    print(sent, recipient)
     return render(request, 'blog/post/detail.html', {'post': post,
                                                      'comments': comments,
-                                                     'comment_form': comment_form})
+                                                     'comment_form': comment_form,
+                                                     'sent': sent,
+                                                     'recipient': recipient})
 
 
 def share_post(request, post_id):
     # Retrieve post by id
     post = get_object_or_404(Post, id=post_id, status='published')
-    sent = False
-    recipient = None
+
+    # Create the form object
     form = EmailPostForm()
 
     if request.method == "POST":
@@ -58,15 +66,17 @@ def share_post(request, post_id):
 
             # Prepare the email
             post_url = request.build_absolute_uri(post.get_absolute_url())
-            subject = '{} ({}) recommends you to read "{}"'.format(cleaned_form_data['name'],
-                                                                   cleaned_form_data['email'],
-                                                                   post.title)
+            subject = '{} recommends you to read "{}"'.format(cleaned_form_data['name'], post.title)
             message = 'Read "{}" at {}\n\n{}\'s comments: {}'.format(post.title,
                                                                      post_url,
                                                                      cleaned_form_data['name'],
                                                                      cleaned_form_data['comments'])
             # Send email
             send_mail(subject, message, 'overlord@myblog.com', [cleaned_form_data['to']])
-            sent = True
             recipient = cleaned_form_data['to']
-    return render(request, 'blog/post/share.html', {'post': post, 'form': form, 'sent': sent, 'recipient': recipient})
+            request.session["sent"] = True
+            request.session["recipient"] = recipient
+            to_next = request.POST.get('next', '/blog/')
+            print(to_next)
+            return HttpResponseRedirect(to_next)
+    return render(request, 'blog/post/share.html', {'post': post, 'form': form})

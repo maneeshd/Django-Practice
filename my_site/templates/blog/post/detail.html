@@ -8,10 +8,14 @@
         Published {{ post.publish }} by {{ post.author }}
     </p>
     {{ post.body|linebreaks }}
+    {% if sent %}
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Post has been shared with {{ recipient }}.
+        </div>
+    {% endif %}
     <p>
-        <a href="{% url 'blog:share_post' post.id %}">
-            Share this post
-        </a>
+        <a href="{% url 'blog:share_post' post.id %}?next={{ request.path|urlencode }}">Share this post</a>
     </p>
     {% with comments.count as total_comments %}
         <h2>
