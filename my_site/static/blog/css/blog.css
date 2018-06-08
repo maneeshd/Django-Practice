@@ -32,7 +32,12 @@ h2 {
     padding: 10px;
     background: #efefef; 
     height: 100%;
+    border: 2px solid transparent;
     border-radius: 6px;
+}
+
+#sidebar:hover {
+    border: solid 2px #777777;
 }
 
 p.date { 
