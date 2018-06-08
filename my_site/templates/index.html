@@ -10,7 +10,7 @@
     <style>
         body {
             font-family: helvetica, sans-serif;
-            background-color: #f5f5f5;
+            background-color: #212f3d;
             text-align: center;
             vertical-align: middle;
         }
@@ -20,39 +20,42 @@
             vertical-align: middle;
             width: 30%;
             margin-left: 35%;
-            border: 2px solid black;
-            color: #900C3F;
+            border: 2px solid #f39c12;
+            color: #f39c12;
             border-radius: 4px;
         }
 
         ol {
-            padding: 2px;
-            width: 25%;
-            margin-left: 40%;
+            padding: 0;
+            width: max-content;
+            width: -moz-max-content;
+            display: inline-block;
             text-align: justify;
+            font-size: 22px;
         }
 
         li {
-            margin: 8px;
+            padding: 4px;
+            margin: 14px 8px;
+            width: max-content;
+            width: -moz-max-content;
+            border: 2px dotted transparent;
+            border-radius: 4px;
         }
 
         a {
-            color: #900C3F;
+            color: #f39c12;
             text-decoration: none;
-            padding: 4px;
-            border: 2px dotted transparent;
-            font-size: 18px;
+            cursor: alias;
         }
 
-        a:hover {
-            border: 2px dotted #900C3F;
-            border-radius: 4px;
-            font-weight: bold;
+        li:hover {
+            border: 2px dotted #f39c12;
         }
     </style>
 </head>
 <body>
-    <h1 style="font-weight: 400;">Welcome to Awesome Apps!</h1>
+    <h1 style="font-weight: 400; color: #f39c12;">Welcome to Awesome Apps!</h1>
     {% if apps %}
         <div id="link_list">
             <h2 style="font-weight: 400;">These are the available apps:</h2>
