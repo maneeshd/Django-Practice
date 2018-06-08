@@ -1,5 +1,7 @@
 {% extends "blog/base.html" %}
 
+{% load blog_tags %}
+
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
@@ -17,7 +19,7 @@
         {% endfor %}
     </p>
     <br>
-    {{ post.body|linebreaks }}
+    {{ post.body|markdown }}
 
     {% if sent %}
         <div class="alert">
