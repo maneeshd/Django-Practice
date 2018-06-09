@@ -29,6 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
 
 # Application definition
 
@@ -39,8 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'blog',
     'taggit',
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +137,12 @@ EMAIL_HOST_USER = GMAIL_CREDS.get("email_id", "NA")
 EMAIL_HOST_PASSWORD = GMAIL_CREDS.get("password", "NA")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+# Haystack config
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr/blog'
+    },
+}

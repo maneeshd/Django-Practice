@@ -17,3 +17,7 @@ class CommentForm(ModelForm):
     class Meta:
         model = Comment
         fields = ('name', 'email', 'body')
+
+
+class SearchForm(Form):
+    query = CharField()

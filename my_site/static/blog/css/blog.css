@@ -32,6 +32,12 @@ h2 {
     padding: 10px;
     background: #efefef; 
     height: 100%;
+    border: 2px solid transparent;
+    border-radius: 6px;
+}
+
+#sidebar:hover {
+    border: solid 2px #777777;
 }
 
 p.date { 
@@ -97,14 +103,17 @@ input[type=submit] {
 }
 
 .post_list_view {
-    padding: 2px;
     border: solid 2px transparent;
+    border-radius: 6px;
+    background: #efefef;
+    margin: 8px 0px;
+    padding: 4px;
 }
 
 .post_list_view:hover {
     background: #e7e7e7;
     border: solid 2px #777777;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
 .alert {

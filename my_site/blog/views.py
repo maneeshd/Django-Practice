@@ -3,9 +3,10 @@ from django.views.generic import ListView
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
-from .models import Post
-from .forms import EmailPostForm, CommentForm
 from taggit.models import Tag
+from haystack.query import SearchQuerySet
+from .models import Post
+from .forms import EmailPostForm, CommentForm, SearchForm
 
 
 # Create your views here.
@@ -112,6 +113,27 @@ def share_post(request, post_id):
             request.session["sent"] = True
             request.session["recipient"] = recipient
             to_next = request.POST.get('next', '/blog/')
-            print(to_next)
             return HttpResponseRedirect(to_next)
     return render(request, 'blog/post/share.html', {'post': post, 'form': form})
+
+
+def post_search(request):
+    form = SearchForm()
+
+    cleaned_data = None
+    results = None
+    total_results = None
+
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
+            results = SearchQuerySet().models(Post).filter(content=cleaned_data['query']).load_all()
+            # Count total results
+            total_results = results.count()
+
+    return render(request,
+                  'blog/post/search.html', {'form': form,
+                                            'cleaned_data': cleaned_data,
+                                            'results': results,
+                                            'total_results': total_results})

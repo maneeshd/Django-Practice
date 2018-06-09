@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="content-language" content="en">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Awesome Apps</title>
+    <style>
+        body {
+            font-family: helvetica, sans-serif;
+            background-color: #212f3d;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        div#link_list {
+            text-align: center;
+            vertical-align: middle;
+            width: 30%;
+            margin-left: 35%;
+            border: 2px solid #f39c12;
+            color: #f39c12;
+            border-radius: 4px;
+        }
+
+        ol {
+            padding: 0;
+            width: max-content;
+            width: -moz-max-content;
+            display: inline-block;
+            text-align: justify;
+            font-size: 22px;
+        }
+
+        li {
+            padding: 4px;
+            margin: 14px 8px;
+            width: max-content;
+            width: -moz-max-content;
+            border: 2px dotted transparent;
+            border-radius: 4px;
+        }
+
+        a {
+            color: #f39c12;
+            text-decoration: none;
+            cursor: alias;
+        }
+
+        li:hover {
+            border: 2px dotted #f39c12;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-weight: 400; color: #f39c12;">Welcome to Awesome Apps!</h1>
+    {% if apps %}
+        <div id="link_list">
+            <h2 style="font-weight: 400;">These are the available apps:</h2>
+            <ol>
+            {% for app in apps %}
+                <li><a href="{{ app.1 }}" target="_blank">{{ app.0 }}</a></li>
+            {% endfor %}
+        </ol>
+        </div>
+    {% else %}
+        <h3>No apps registered yet.</h3>
+    {% endif %}
+</body>
+</html>
