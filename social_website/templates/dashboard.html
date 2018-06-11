@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    {% if user %}
+        <h1>Welcome {{ user }}</h1>
+        <h3>You have been authenticated successfully.</h3>
+    {% else %}
+        <h2>Oops! There seems to be an error.</h2>
+    {% endif %}
+{% endblock %}
