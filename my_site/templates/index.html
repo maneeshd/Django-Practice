@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +8,7 @@
     <meta http-equiv="content-language" content="en">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{% static '/favicon.png' %}">
     <title>Awesome Apps</title>
     <style>
         body {
@@ -58,12 +61,11 @@
     <h1 style="font-weight: 400; color: #f39c12;">Welcome to Awesome Apps!</h1>
     {% if apps %}
         <div id="link_list">
-            <h2 style="font-weight: 400;">These are the available apps:</h2>
             <ol>
             {% for app in apps %}
                 <li><a href="{{ app.1 }}" target="_blank">{{ app.0 }}</a></li>
             {% endfor %}
-        </ol>
+            </ol>
         </div>
     {% else %}
         <h3>No apps registered yet.</h3>
