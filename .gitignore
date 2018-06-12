@@ -104,5 +104,4 @@ ENV/
 .idea/
 
 # sensitive data
-my_site/my_site/secret.json
-my_site/my_site/secret.py
+*secret.*
