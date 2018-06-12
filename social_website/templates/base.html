@@ -11,10 +11,35 @@
         <title>{% block title %}{% endblock %}</title>
         <link rel="icon" type="image/png" href="{% static '/img/favicon.png' %}">
         <link href="{% static '/css/style.css' %}" rel="stylesheet">
+        <link href="{% static '/css/fontawesome-all.min.css' %}" rel="stylesheet">
     </head>
     <body>
         <div id="header">
             <span class="logo">Bookmarks</span>
+            {% if request.user.is_authenticated %}
+                <ul class="menu">
+                    <li {% if section == 'dashboard' %}class="selected"{% endif %}>
+                        <a href="{% url 'bookmarks:dashboard' %}">My dashboard</a>
+                    </li>
+                    <li {% if section == 'images' %}class="selected"{% endif %}>
+                        <a href="#">Images</a>
+                    </li>
+                    <li {% if section == 'people' %}class="selected"{% endif %}>
+                        <a href="#">People</a>
+                    </li>
+                    <li {% if section == 'about_me' %}class="selected"{% endif %}>
+                        <a href="{% url 'bookmarks:about_me' %}">About Me</a>
+                    </li>
+                </ul>
+            {% endif %}
+            <span class="user">
+                {% if request.user.is_authenticated %}
+                    Hello {{ request.user.first_name }},
+                    <a href="{% url 'bookmarks:logout' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'bookmarks:login' %}">Log-in</a>
+                {% endif %}
+            </span>
         </div>
         <div id="content">
             {% block content %}

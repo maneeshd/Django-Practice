@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+    <h2 style="text-align:center">This is me</h2>
+    <div class="card">
+        <img src="{% static '/img/dp_land.jpg' %}" alt="Maneesh Divana" style="width:100%;">
+        <h1>Maneesh Divana</h1>
+        <p class="card-title">Senior Software Engineer<br>Mindtree Ltd.</p>
+        <span>
+            <ul class="contact-info-list">
+                <li class="contact-info">
+                    <i class="fas fa-envelope"></i>&nbsp;
+                    <a class="email-link" href='mailto:maneeshd77@gmail.com?Subject=Hello' target="_top">
+                        maneeshd77@gmail.com
+                    </a>
+                </li>
+                <li class="contact-info">
+                    <i class="fas fa-mobile"></i>&nbsp;+91-7795826802
+                </li>
+            </ul>
+        </span>
+        <div style="margin: 20px 0; padding: 10px 0;">
+            <a class="card-link" href="https://www.github.com/maneeshd/" target="_blank"><i class="fab fa-github"></i></a>&nbsp;&nbsp;
+            <a class="card-link" href="https://www.twitter.com/maneeshd7/" target="_blank"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;
+            <a class="card-link" href="https://www.linkedin.com/in/maneesh-d-66b793104/" target="_blank"><i class="fab fa-linkedin-in"></i></a>&nbsp;&nbsp;
+            <a class="card-link" href="https://www.facebook.com/D.Maneesh/" target="_blank"><i class="fab fa-facebook"></i></a>
+        </div>
+    </div>
+{% endblock %}

@@ -9,8 +9,13 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
-
+from django.urls import reverse_lazy
 import os
+try:
+    from .secret import GMAIL_CREDS
+except ImportError:
+    GMAIL_CREDS = {}
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -123,3 +128,16 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+LOGIN_REDIRECT_URL = reverse_lazy('bookmarks:dashboard')
+LOGIN_URL = reverse_lazy('bookmarks:login')
+LOGOUT_URL = reverse_lazy('bookmarks:logout')
+
+
+# Email SMTP Server Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = GMAIL_CREDS.get("email_id", "NA")
+EMAIL_HOST_PASSWORD = GMAIL_CREDS.get("password", "NA")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

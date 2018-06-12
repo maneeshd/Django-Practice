@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-from .secret import GMAIL_CREDS
+try:
+    from .secret import GMAIL_CREDS
+except ImportError:
+    GMAIL_CREDS = {}
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

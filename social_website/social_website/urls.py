@@ -23,5 +23,6 @@ apps = [('Bookmarks', '/bookmarks/'), ("Admin Page", '/admin/')]
 urlpatterns = [
     path(r'', TemplateView.as_view(template_name="index.html"), {'apps': apps}, name="landing"),
     path(r'admin/', admin.site.urls),
-    path(r'bookmarks/', include(arg=("bookmarks.urls", "sw_app"), namespace="bookmarks"))
+    path(r'bookmarks/', include(arg=("bookmarks.urls", "bookmarks"), namespace="bookmarks")),
+    path('', include('django.contrib.auth.urls'))
 ]
