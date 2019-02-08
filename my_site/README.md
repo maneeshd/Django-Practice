@@ -1,4 +1,4 @@
-# MyBlog
+# My Blog
 
 - Install the python package requirements `$ pip install -r requirements.txt`
 
